@@ -34,6 +34,7 @@ class S3Storage extends StorageBase {
   bucket?: string
   host: string
   pathPrefix: string
+  staticFileURLPrefix: string
   endpoint: string
   forcePathStyle: boolean
   acl?: ObjectCannedACL
@@ -88,6 +89,8 @@ class S3Storage extends StorageBase {
     this.pathPrefix = stripLeadingSlash(
       process.env.GHOST_STORAGE_ADAPTER_S3_PATH_PREFIX || pathPrefix || ''
     )
+    this.staticFileURLPrefix = pathPrefix
+
     this.endpoint =
       process.env.GHOST_STORAGE_ADAPTER_S3_ENDPOINT || endpoint || ''
     this.acl = (process.env.GHOST_STORAGE_ADAPTER_S3_ACL ||
